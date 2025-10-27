@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { LineController } from './modules/line/line.controller';
 import { LineModule } from './modules/line/line.module';
 import { SheetsController } from './modules/sheets/sheets.controller';
 import { SheetsModule } from './modules/sheets/sheets.module';
@@ -9,7 +8,7 @@ import { UsecasesModule } from './usecases/usecases.module';
 
 @Module({
   imports: [SheetsModule, LineModule],
-  controllers: [AppController, SheetsController],
-  providers: [AppService, UsecasesModule, RepositoriesModule],
+  controllers: [SheetsController, LineController],
+  providers: [UsecasesModule, RepositoriesModule, LineModule],
 })
 export class AppModule {}
