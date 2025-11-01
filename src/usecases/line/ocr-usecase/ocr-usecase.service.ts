@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { VisionRepository } from '../../repositories/vision-repository/vision-repository.service';
+import { VisionRepository } from '../../../repositories/vision-repository/vision-repository.service';
 
 @Injectable()
-export class OcrUsecase {
+export class OcrUsecaseService {
   constructor(private readonly vision: VisionRepository) {}
 
   async execute(buf: Buffer): Promise<string> {
