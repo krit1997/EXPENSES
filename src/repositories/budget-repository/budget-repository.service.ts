@@ -12,7 +12,7 @@ import { UpdateResult } from 'typeorm/browser';
 import { BudgetEntity } from '../../databases/entities/BudgetEntity';
 
 @Injectable()
-export class BudgetRepositoryService {
+export class BudgetRepository {
   constructor(
     @InjectRepository(BudgetEntity)
     private readonly budgetRepository: Repository<BudgetEntity>,

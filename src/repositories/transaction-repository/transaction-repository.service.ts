@@ -5,14 +5,16 @@ import {
   FindOneOptions,
   FindOptionsWhere,
   ObjectId,
+  QueryRunner,
   RemoveOptions,
   Repository,
+  SelectQueryBuilder,
   UpdateResult,
 } from 'typeorm';
 import { TransactionEntity } from '../../databases/entities/TransactionEntity';
 
 @Injectable()
-export class TransactionRepositoryService {
+export class TransactionRepository {
   constructor(
     @InjectRepository(TransactionEntity)
     private readonly transactionRepository: Repository<TransactionEntity>,
@@ -55,5 +57,12 @@ export class TransactionRepositoryService {
     partialEntity: Partial<TransactionEntity>,
   ): Promise<UpdateResult> {
     return await this.transactionRepository.update(criteria, partialEntity);
+  }
+
+  createQueryBuilder(
+    alias?: string,
+    queryRunner?: QueryRunner,
+  ): SelectQueryBuilder<TransactionEntity> {
+    return this.transactionRepository.createQueryBuilder(alias);
   }
 }

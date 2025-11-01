@@ -7,6 +7,7 @@ import { HandleSlipUsecase } from './handle-slip.usecase';
 import { ParseTextUsecase } from './parse-text.usecase';
 import { ParseWhenUsecase } from './parse-when.usecase';
 import { SaveSlipUsecase } from './save-slip.usecase';
+import { WatchStatusBudgetUsecaseService } from './watch-status-budget-usecase/watch-status-budget-usecase.service';
 
 @Injectable()
 export class HandleWebhookUsecase {
@@ -18,6 +19,7 @@ export class HandleWebhookUsecase {
     private readonly guessTypeUsecase: GuessTypeUsecase,
     private readonly guessCategoryUsecase: GuessCategoryUsecase,
     private readonly saveSlipUsecase: SaveSlipUsecase,
+    private readonly watchStatusBudgetUsecaseService: WatchStatusBudgetUsecaseService,
   ) {}
 
   private readonly logger = new Logger(HandleWebhookUsecase.name);
@@ -60,6 +62,7 @@ export class HandleWebhookUsecase {
     signature?: string,
   ): Promise<{ status: number; body: string }> {
     const buf = bodyBuf as Buffer | undefined;
+    console.log('🚀 ~ HandleWebhookUsecase ~ execute ~ buf:', buf);
     if (!signature) return { status: 200, body: 'OK (no signature)' };
     if (!buf) return { status: 400, body: 'Bad Request (no body)' };
     const bodyText = buf.toString('utf8');

@@ -12,7 +12,7 @@ import {
 import { CategoryEntity } from '../../databases/entities/CategoryEntity';
 
 @Injectable()
-export class CategoryRepositoryService {
+export class CategoryRepository {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoryRepository: Repository<CategoryEntity>,

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { RepositoriesModule } from '../repositories/repositories.module';
+import { BudgetStatusUsecaseService } from './budget-status-usecase/budget-status-usecase.service';
 import { GuessCategoryUsecase } from './line/guess-category.usecase';
 import { GuessTypeUsecase } from './line/guess-type.usecase';
 import { HandleSlipUsecase } from './line/handle-slip.usecase';
@@ -11,6 +12,7 @@ import { ParseTextUsecase } from './line/parse-text.usecase';
 import { ParseWhenUsecase } from './line/parse-when.usecase';
 import { PreprocessImageUsecase } from './line/preprocess-image.usecase';
 import { SaveSlipUsecase } from './line/save-slip.usecase';
+import { WatchStatusBudgetUsecaseService } from './line/watch-status-budget-usecase/watch-status-budget-usecase.service';
 
 @Module({
   imports: [RepositoriesModule],
@@ -26,17 +28,23 @@ import { SaveSlipUsecase } from './line/save-slip.usecase';
     GuessTypeUsecase,
     GuessCategoryUsecase,
     HandleWebhookUsecase,
+    BudgetStatusUsecaseService,
+    WatchStatusBudgetUsecaseService,
   ],
   exports: [
     HandleSlipUsecase,
-    HandleWebhookUsecase,
+    PreprocessImageUsecase,
+    OcrUsecase,
+    ParseSlipUsecase,
+    SaveSlipUsecase,
+    NotifyUserUsecase,
     ParseTextUsecase,
     ParseWhenUsecase,
     GuessTypeUsecase,
     GuessCategoryUsecase,
-    ParseSlipUsecase,
-    SaveSlipUsecase,
-    NotifyUserUsecase,
+    HandleWebhookUsecase,
+    BudgetStatusUsecaseService,
+    WatchStatusBudgetUsecaseService,
   ],
 })
 export class UsecasesModule {}
